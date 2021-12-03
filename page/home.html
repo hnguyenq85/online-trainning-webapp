@@ -1,0 +1,140 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-home.gif");
+    }
+
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh;
+            padding-top: 5vh !important;
+        }
+
+        .list-subject {
+            padding-top: 15vh !important;
+        }
+
+    }
+
+    @media only screen and (max-width: 770px) {
+        .view>img {
+            height: 50vh !important;
+        }
+    }
+
+    @media only screen and (min-width: 990px) {
+        .subject-item {
+            height: 300px !important;
+            position: relative;
+        }
+        .title-subject{
+            height: 120px;
+        }
+        
+        main {
+            padding-top: 10vh !important;
+        }
+    }
+</style>
+<div class="container z-depth-1 py-2 px-5 view-panel rounded shadown" ng-hide="firebaseUser">
+
+    <!--Section: Content-->
+    <section class="dark-grey-text">
+
+        <div class="row pr-lg-5">
+            <div class="col-md-7 mb-4">
+
+                <div class="view">
+                    <img src="/img/other/banner.png" class="img-fluid p-4" alt="smaple image" style="height: 80vh;">
+                </div>
+
+            </div>
+            <div class="col-md-5 d-flex align-items-center">
+                <div class="mb-3">
+                    <h3 class="font-weight-bold mb-4 text-white h1">
+                        Hệ thống thi trắc nghiệm trực tuyến
+                    </h3>
+
+                    <a class="btn btn-orange btn-rounded mx-2 waves-effect text-white font-weight-bold"
+                        href="#!/login">Đăng nhập</a>
+                    <a class="btn btn-blue btn-rounded mx-2 waves-effect text-white font-weight-bold"
+                        href="#!/register">Đăng kí</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!--Section: Content-->
+
+</div>
+
+
+<div class="container z-depth-1 px-5 py-4 view-panel list-subject rounded shadown" ng-show="firebaseUser">
+
+    <!--Section: Content-->
+    <section class="text-center">
+        <p class="h4 mb-4 text-white text-uppercase">Danh mục thi</p>
+
+        <p class="text-white">Danh sách các môn thi trong hệ thống</p>
+        <!-- card row -->
+        <div class="row my-4">
+            <div class="col-xl-3 d-flex align-items-stretch"
+                ng-repeat="sj in subjectsList | orderBy:Id| limitTo:itemPerPage:page*itemPerPage">
+                <!-- Card -->
+                <div class="card card-image mb-4" style="background-image: url({{sj.Logo}});">
+
+                    <!-- Content -->
+                    <div class="text-white d-flex align-items-center rgba-black-strong py-5 px-4 h-100 subject-item">
+                        <div class="text-center w-100 card-body d-flex flex-column">
+                            <h5 class="orange-text font-weight-bold"><i class="fas fa-book-open"></i><br>Bài thi</h5>
+                            <h4 class="card-title pt-2 title-subject"><strong>{{sj.Name}}</strong></h4>
+                            <div class="mt-auto">
+                                <a class="btn btn-orange white-text btn-block"
+                                    ng-href="#!/test/info?id={{sj.Id}}&u={{firebaseUser.uid}}"><i
+                                        class="fas fa-clone left"></i> Xem Thông Tin</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+
+        </div>
+
+        <ul class="pagination pg-amber justify-content-center">
+            <li class="page-item">
+                <a class="page-link white-text" ng-click="first()">
+                    First
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link white-text" ng-click="prev()">
+                    Previous
+                </a>
+            </li>
+            <li class="page-item  {{page==$index?'active':''}}"
+                ng-repeat="i in [].constructor(lastPage+1) track by $index">
+                <a class="page-link white-text" ng-click="jump($index)">
+                    {{$index+1}}
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link white-text" ng-click="next()">
+                    Next
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link white-text" ng-click="last()">
+                    Last
+                </a>
+            </li>
+        </ul>
+
+
+
+    </section>
+    <!--Section: Content-->
+
+</div>

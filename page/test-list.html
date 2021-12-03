@@ -1,0 +1,82 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-test.gif");
+    }
+
+    th,
+    td {
+        color: white !important;
+    }
+
+    tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.11);
+    }
+
+    .titleQuestion {
+        font-size: 15px;
+    }
+
+    .icon {
+        display: contents;
+    }
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh;
+            padding-top: 55px !important;
+        }
+
+        .icon {
+            display: none;
+        }
+    }
+</style>
+<div class="container view-panel rounded shadow">
+    <!--Section: Content-->
+    <section class="px-md-2 py-sm-5 z-depth-1">
+        <h3 class="text-center font-weight-bold mb-3 text-white">Danh sách bài đã thi</h3>
+        <select class="browser-default custom-select" ng-options="sj as sj.Name for sj in subjectsList track by sj.Id"
+            ng-model="subjectSelect" ng-change='loadList(subjectSelect)'>
+
+        </select>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">
+                        <i class="fas fa-calendar mr-2 red-text icon" aria-hidden="true"></i>
+                        NGÀY
+                    </th>
+                    <th scope="col">
+                        <i class="fas fa-marker mr-2 orange-text icon" aria-hidden="true"></i>
+                        ĐIỂM
+                    </th>
+                    <th scope="col">
+                        <i class="fas fa-trophy mr-2 green-text icon" aria-hidden="true"></i>
+                        KẾT QUẢ
+                    </th>
+                    <th scope="col">
+                        <i class="fas fa-clock mr-2 blue-text icon" aria-hidden="true"></i>
+                        THỜI GIAN
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, sj) in subjectLoad.testList track by $index" ng-click="loadResult($index)" ng-if="key!=subjectLoad.active">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{sj.date}}</td>
+                    <td>{{sj.mark}}</td>
+                    <td ng-class="{1: 'green-text', 2: 'red-text'}[sj.mark<6?2:1]">{{sj.mark<6?'Rớt':'Đạt'}} </td>
+                    <td>
+                        <span class="d-inline-block text-white">{{("00"+sj.m).slice(-2)}}</span>
+                        <span class="d-inline-block text-white">:</span>
+                        <span class="d-inline-block text-white">{{("00"+sj.s).slice(-2)}}</span>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+    <!--Section: Content-->
+
+</div>

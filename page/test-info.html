@@ -1,0 +1,54 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-test.gif");
+    }
+</style>
+<div class="container py-3 z-depth-1 view-panel rounded shadow">
+    <section class="my-3 mx-md-5">
+        <div class="row d-flex justify-content-between align-items-center mb-3">
+            <div class="col-lg-8 col-md-6 mb-4">
+                <h2 class="font-weight-bold my-3 white-text">{{subjectInfo.Name}}</h2>
+                <p class="text-muted pt-3 white-text">
+                    Thí sinh sẽ tiến thành kiểm tra kiến thức đã học trong môn {{subjectInfo.Name}} 
+                    bằng hình thức thi trắc nghiệm. Trong bài kiểm tra này sẽ {{subjectInfo.Description}}
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center mb-md-0 mb-5 order-md-first">
+                <img src="{{subjectInfo.Logo}}" alt="logo" class="p-3" style="width: 90%; border-radius: 10%;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="font-weight-bold mb-3 white-text text-center">
+                    <i class="fas fa-clock blue-text pr-2"></i> Thời gian
+                </h4>
+                <p class="text-muted mb-lg-0 h2 white-text text-center">
+                    {{subjectInfo.Time}} phút
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 text-center">
+                <h4 class="font-weight-bold mb-3 white-text">
+                    <i class="fas fa-question green-text pr-2"></i> Số câu hỏi
+                </h4>
+                <p class="text-muted mb-lg-0 h2 text-center white-text">
+                    10
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 text-center">
+                <h4 class="font-weight-bold mb-3 white-text">
+                    <i class="fas fa-thumbs-up orange-text pr-2"></i> Điểm đạt
+                </h4>
+                <p class="text-muted mb-lg-0 h2 white-text">
+                    6
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 ">
+                <button class="btn peach-gradient w-100 h-100 font-weight-bold" ng-click="takeTest()">
+                    <span class="h3">
+                        {{test.active.length>0?"Tiếp tục bài thi":"Bắt đầu bài thi"}}
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

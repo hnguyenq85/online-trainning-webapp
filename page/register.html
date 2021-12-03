@@ -1,0 +1,149 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-account.gif");
+    }
+
+
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            height: 100vh !important;
+            padding-top: 20vh !important;
+        }
+
+        main {
+            padding-top: 0px !important;
+        }
+    }
+</style>
+<div class="container" ng-init="submitted=false">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 text-center text-lg-left dark-grey-text">
+
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-lg-8 col-xl-6 view-panel pt-4 pb-3 px-5 rounded z-depth-1">
+
+                <!-- Default form login -->
+                <form class="text-center" name="registerForm" ng-submit="register(registerForm.$invalid)" autocomplete="off">
+
+                    <p class="h4 mb-3 pt-md-2 text-white">Đăng kí</p>
+
+                    <!-- Fullname -->
+                    <div class="form-group mb-2">
+                        <input type="text" name="fullname" class="form-control" placeholder="Tên đầy đủ"
+                            ng-required="true" ng-model="register.fullname" ng-pattern="re">
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&registerForm.fullname.$error.required">
+                                Hãy nhập tên đầy đủ của bạn
+                            </span>
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&(register.fullname.length<5||registerForm.fullname.$error.pattern)">
+                                Tên không hợp lệ
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <div class="form-row">
+                            <div class="col">
+                                <!-- birthday -->
+                                <input type="text" id="" class="form-control" placeholder="Ngày sinh"
+                                    onfocus="(this.type='date')" ng-model="register.birthday" max="{{minAge | date:'yyyy-MM-dd'}}" min="{{maxAge | date:'yyyy-MM-dd'}}" ng-required="true">
+
+                            </div>
+                            <div class="col">
+                                <!-- Gender -->
+                                <select class="custom-select custom-select" ng-model="register.gender" ng-required="true">
+                                    <option value="" disabled selected>Giới tính</option>
+                                    <option value="true">Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&(register.gender===null||!register.birthday)">
+                                Hãy điền đủ thông tin
+                            </span>
+                        </small>
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group mb-2">
+                        <input type="email" name="email" class="form-control" placeholder="Email" ng-required="true"
+                            ng-model="register.email">
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&registerForm.email.$error.required">
+                                Hãy nhập email đăng kí
+                            </span>
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&registerForm.email.$error.email">
+                                Email không hợp lệ
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <div class="form-row">
+                            <div class="col">
+                                <!-- Password -->
+                                <input type="password" name="password" class="form-control " placeholder="Mật khẩu"
+                                    ng-model="register.password" ng-required="true">
+                            </div>
+                            <div class="col">
+                                <!-- confirm Password -->
+                                <input type="password" name="cpassword" class="form-control "
+                                    placeholder="Xác nhận Mật khẩu" ng-model="register.cpassword" ng-required="true">
+                            </div>
+                        </div>
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&(registerForm.password.$error.required&&registerForm.cpassword.$error.required)">
+                                Hãy nhập mật khẩu đăng nhập
+                            </span>
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&register.password.length<7">
+                                Mật khẩu không được ngắn hơn 7 kí tự
+                            </span>
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&!registerForm.password.$error.required&&!registerForm.cpassword.$error.required&&(register.password!==register.cpassword)">
+                                Mật khẩu không trùng
+                            </span>
+                        </small>
+                    </div>
+
+                    <!-- Sign up button -->
+                    <button class="btn btn-info btn-block my-4" type="submit" ng-click="submitted=true">Đăng ki</button>
+
+                    <!-- Social register -->
+                    <p class="text-white">Hoặc đăng kí bằng:</p>
+                    <a ng-click="googleSingin()" class="icons-sm gplus-ic"><i class="fab fa-google fa-2x"> </i></a>
+
+                </form>
+                <!-- Default form login -->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
