@@ -1,0 +1,101 @@
+<style>
+  body {
+    background-image: url("../img/bg/bg-account.gif");
+  }
+
+  @media only screen and (max-width: 570px) {
+    .view-panel {
+      height: 100vh !important;
+      padding-top: 20vh !important;
+    }
+
+    main {
+      padding-top: 0em !important;
+    }
+  }
+</style>
+<div class="container" ng-init="submitted=false">
+
+
+  <!--Section: Content-->
+  <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+      <!--Grid column-->
+      <div class="col-xl-6 col-lg-8 view-panel p-5 rounded z-depth-1">
+
+        <!-- Default form login -->
+        <form class="text-center" ng-submit="normalSignin()" name="signin">
+
+          <p class="h4 mb-4 text-white">Đăng nhập</p>
+
+          <!-- Email -->
+          <div class="form-group mb-2">
+            <input type="email" name="email" class="form-control" placeholder="Email" ng-model="login.em"
+              ng-required="true">
+            <small>
+              &nbsp;
+              <span class="help-inline red-text font-weight-bold m-0" ng-show="submitted&&signin.email.$error.required">
+                Hãy nhập email tài khoản
+              </span>
+              <span class="help-inline red-text font-weight-bold m-0" ng-show="submitted&&signin.email.$error.email">
+                Email không hợp lệ
+              </span>
+            </small>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group mb-1">
+            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" ng-model="login.pw"
+              ng-required="true">
+            <small>
+              &nbsp;
+              <span class="help-inline red-text font-weight-bold" ng-show="submitted&&signin.password.$error.required">
+                Hãy nhập mật khẩu tài khoản
+              </span>
+            </small>
+
+          </div>
+
+
+          <div class="d-flex justify-content-around">
+            <!-- Remember me -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="remember" ng-model="login.remember">
+              <label class="custom-control-label text-white" for="remember">Ghi nhớ tôi?</label>
+            </div>
+            <div>
+              <!-- Forgot password -->
+              <a href="#!/forgot-password">Quên mật khẩu?</a>
+            </div>
+          </div>
+
+          <!-- Sign in button -->
+          <button class="btn btn-info btn-block my-4" type="submit" ng-click="submitted=true">Đăng nhập</button>
+
+          <!-- Register -->
+          <p class="text-white">Chưa có tài khoản?
+            <a href="#!/register">Đăng kí</a>
+          </p>
+
+          <!-- Social login -->
+          <p class="text-white">Hoặc đăng nhập bằng:</p>
+          <a ng-click="googleSingin()" class="icons-sm gplus-ic"><i class="fab fa-google fa-2x"> </i></a>
+        </form>
+        <!-- Default form login -->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>

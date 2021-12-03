@@ -1,0 +1,111 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-account-log.gif");
+    }
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh;
+            padding-top: 15vh !important;
+        }
+
+    }
+</style>
+<div class="container" ng-init="submitted=false">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-md-10 view-panel p-5 rounded z-depth-1">
+
+                <!-- Default form login -->
+                <form class="text-center" name="editInfo" ng-submit="updateInfo()">
+
+                    <p class="h4 mb-4 text-white">Thông tin thí sinh</p>
+
+                    <!-- Fullname -->
+                    <div class="form-group">
+                        <input type="text" name="fullname" class="form-control" placeholder="Tên đầy đủ"
+                            ng-required="true" ng-model="info.fullname" ng-pattern="re">
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&editInfo.fullname.$error.required">
+                                Hãy nhập tên đầy đủ của bạn
+                            </span>
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&(editInfo.fullname.length<5||editInfo.fullname.$error.pattern)">
+                                Tên không hợp lệ
+                            </span>
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <!-- birthday -->
+                                <input type="text" id="" class="form-control" placeholder="Ngày sinh"
+                                    onfocus="(this.type='date')" ng-model="info.birthday"
+                                    max="{{minAge | date:'yyyy-MM-dd'}}" min="{{maxAge | date:'yyyy-MM-dd'}}"
+                                    ng-required="true">
+
+                            </div>
+                            <div class="col">
+                                <!-- Gender -->
+                                <select class="custom-select custom-select" ng-model="info.gender" ng-required="true">
+                                    <option value="" disabled selected>Giới tính</option>
+                                    <option value="true">Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <small>
+                            &nbsp;
+                            <span class="help-inline red-text font-weight-bold m-0"
+                                ng-show="submitted&&(info.gender===null||!info.birthday)">
+                                Hãy điền đủ thông tin
+                            </span>
+                        </small>
+                    </div>
+
+
+                    <!-- email -->
+                    <div class="form-group mb-3">
+                        <input type="text" id="" class="form-control" placeholder="Email" required ng-model="info.email"
+                            disabled>
+                        <small>
+                            &nbsp;
+                        </small>
+                    </div>
+
+
+                    <!-- school -->
+                    <div class="form-group mb-2">
+                        <input type="text" id="" class="form-control mb-4" placeholder="Trường" ng-model="info.school">
+                    </div>
+
+
+                    <!-- Sign in button -->
+                    <button class="btn btn-info btn-block my-4" type="submit" ng-click="submitted=true">Gửi</button>
+
+                </form>
+                <!-- Default form login -->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>

@@ -1,0 +1,89 @@
+body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+body a {
+  outline: none;
+}
+
+.view-panel {
+  background-color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.hover-link:hover {
+  color: #fd7e14 !important;
+  transition: 0.3s !important;
+}
+
+.sidenav-link {
+  font-size: 1.2rem !important;
+  font-weight: bolder !important;
+}
+
+.sidenav {
+  background-image: linear-gradient(rgb(0, 0, 0) 5%, transparent),
+    url("/img/bg/bg-sidenav.webp");
+}
+
+.navbar {
+  background-color: rgb(0, 0, 0) !important;
+}
+
+.logo {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  padding-top: 5em !important;
+}
+
+@media only screen and (max-width: 570px) {
+  main {
+    padding-top: 0em !important;
+  }
+}
+
+footer {
+  opacity: 50%;
+}
+
+@keyframes color-change {
+  0% {
+    color: #ffffff;
+  }
+  25% {
+    color: #7ba6d8;
+  }
+  50% {
+    color: #a0df9b;
+  }
+  75% {
+    color: #e9aa77;
+  }
+  100% {
+    color: #ffffff;
+  }
+}
+
+.view-panel a {
+  color: #fd7e14;
+  font-weight: bolder;
+}
+.view-panel a:hover {
+  color: #fab47b;
+}
+.view-panel button[type="submit"] {
+  background-color: #fd7e14 !important;
+}
+
+@media only screen and (max-width: 550px) {
+  .view-panel {
+    margin-bottom: 0px !important;
+  }
+}
+
+.help-inline {
+  font-size: 12px;
+}

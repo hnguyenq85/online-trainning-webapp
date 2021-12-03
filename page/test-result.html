@@ -1,0 +1,103 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-test.gif");
+    }
+
+    .titleQuestion {
+        font-size: 15px;
+    }
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh !important;
+            padding-top: 8vh !important;
+        }
+    }
+</style>
+<div class="container view-panel rounded shadow" ng-init="initResult()">
+
+
+    <!--Section: Content-->
+    <section class="p-5 z-depth-1">
+
+        <h3 class="text-center font-weight-bold mb-5 text-white">Kết quả bài thi</h3>
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-4 mb-4 text-center">
+                <h4 class="h1 font-weight-normal mb-3">
+                    <i class="fas fa-clock blue-text"></i>
+                    <span class="d-inline-block text-white">{{("00"+min).slice(-2)}}</span>
+                    <span class="d-inline-block text-white">:</span>
+                    <span class="d-inline-block text-white">{{("00"+sec).slice(-2)}}</span>
+                </h4>
+                </h4>
+                <p class="font-weight-normal text-white">Thời gian hoàn thành</p>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4 text-center">
+                <h4 class="h1 font-weight-normal mb-3">
+                    <i class="fas fa-marker orange-text"></i>
+                    <span class="d-inline-block count-mark text-white">{{mark}}</span>
+                </h4>
+                <p class="font-weight-normal text-white">Điểm đạt được</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <h4 class="h1 font-weight-normal mb-3">
+                    <i class="" ng-class="{1: 'fas fa-thumbs-up green-text', 2: 'fas fa-thumbs-down red-text', 3: 'fas fa-hand-holding white-text'}
+                    [archived=='Đạt'?1:(archived=='Rớt'?2:3)]"></i>
+                    <span class="d-inline-block text-white" >{{archived}}</span>
+                </h4>
+                <p class="font-weight-normal text-white">Kết quả</p>
+            </div>
+
+        </div>
+        <!--Accordion wrapper-->
+        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <h5 class="text-center font-weight-bold mt-3 mb-3 text-white">Đáp án</h5>
+            <!-- Accordion card -->
+            <div class="card border-bottom-0 border-left border-right border-light rounded faq-content"
+                ng-repeat="r in questions track by $index">
+
+                <!-- Card header -->
+                <div class="card-header border-bottom border-light m-0 p-2" role="tab" ng-class="{true: 'red lighten-4'}
+                [r.Answered!==r.AnswerId]">
+                    <button class="btn btn-link w-100 m-auto p-0 btn-accordion" data-parent="#accordionEx"
+                        data-toggle="collapse" data-target="#r{{r.Id}}" aria-expanded="true" aria-controls="r{{r.Id}}"
+                        style="text-transform:none;">
+                        <div class="row">
+                            <div class="col-11">
+                                <b class="float-left font-weight-normal black-text text-normal titleQuestion text-left">
+                                    {{$index+1}}. {{r.Text}}
+                                </b>
+                            </div>
+                            <div class="col-1">
+                                <i class="fas fa-angle-down rotate-icon float-right h5 font-weight-bold mr-2"></i>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Card body -->
+                <div id="r{{r.Id}}" class="collapse" role="tabpanel" aria-labelledby="" data-parent="#accordionEx">
+                    <div class="card-body">
+                        <div class="custom-control custom-radio ml-md-5" ng-repeat="a in r.Answers">
+                            <input ng-checked="a.Id===r.Answered" type="radio" class="custom-control-input"
+                                id="{{a.Id}}" name="{{q.Id}}" disabled>
+                            <label class="custom-control-label font-weight-bold" for="{{a.Id}}" ng-class="{1: 'green-text', 2: 'red-text', 3: 'black-text'}
+                                [a.Id===r.AnswerId?1:(a.Id==r.Answered?2:3)]">{{a.Text}}</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion card -->
+            </div>
+
+        </div>
+        <!-- Accordion wrapper -->
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>

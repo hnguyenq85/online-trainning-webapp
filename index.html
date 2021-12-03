@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Online Training</title>
+    <!-- Fav icon -->
+    <link rel="shortcut icon" type="image/jpg" href="img/logo/FPT_fav.webp" />
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/style/b4/bootstrap.min.css">
+    <!-- MDB CSS-->
+    <link rel="stylesheet" href="style/mdb/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/page-transition.css">
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.1/dist/sweetalert2.all.min.js"></script>
+    <script src="/script/sweetalert.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+
+
+</head>
+
+<body class="fixed-sn bg-white" ng-app="app" ng-controller="ctrl">
+
+    <!--Side Navigation-->
+    <header>
+        <mdb-side-nav #sidenav id="slide-out" class="side-nav sidenav">
+            <ul class="custom-scrollbar">
+                <!-- Logo -->
+                <li>
+                    <div class="logo-wrapper waves-light">
+                        <a href="#" class="link-toggle">
+                            <img src="/img/logo/fpt-lg-logo.png" class="img-fluid flex-center">
+                        </a>
+                    </div>
+                </li>
+                <!--/. Logo -->
+
+                <!-- Side navigation links -->
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="waves-effect sidenav-link" href="#!/about">
+                                <i class="fas fa-info-circle"></i>
+                                Giới thiệu
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect sidenav-link" href="#!/contact">
+                                <i class="fas fa-globe"></i>
+                                Liên hệ
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect sidenav-link" href="#!/faq">
+                                <i class="fas fa-question-circle"></i>
+                                Hỏi đáp
+                            </a>
+                        </li>
+                        <li ng-show="firebaseUser">
+                            <a class="collapsible-header waves-effect sidenav-link">
+                                <i class="fas fa-list-ul"></i>
+                                Danh mục
+                                <i class="fas fa-angle-down rotate-icon"></i>
+                            </a>
+                            <div class="collapsible-body 
+                            bg-dark" style="z-index: 1000;">
+                                <ul>
+                                    <li ng-repeat="sj in subjectsList">
+                                        <a ng-click="intro=1" href="#!/test/info?id={{sj.Id}}"
+                                            class="waves-effect pl-4">
+                                            <img src="{{sj.Logo}}" class="img-fluid rounded-circle hoverable mr-2"
+                                                style="height: 20px;" alt="">
+                                            {{sj.Name}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+                <li class="fixed-bottom" style="z-index: -1000;">
+                    <footer class="row">
+                        <div class="col-12 text-center">
+                            <a href="" class="text-muted p-0 font-weight-bold">
+                                @hnguyenq85
+                            </a>
+                        </div>
+                    </footer>
+                </li>
+            </ul>
+        </mdb-side-nav>
+        <!--Side Navigation-->
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav nav-dark">
+            <div class="float-left">
+                <a href="#" data-activates="slide-out" class="button-collapse hover-link"><i
+                        class="fas fa-bars"></i></a>
+            </div>
+            <div class="mx-auto">
+                <a class="text-white my-auto" style="font-size: 20px;" href="#!/home">
+                    <strong class="logo">
+                        <img src="/img/logo/brand-logo-white.png" alt="" style="height: 25px;">
+                        Online Training
+                    </strong>
+                </a>
+            </div>
+
+            <div class="nav-item dropdown">
+                <button type="button" class="btn dropdown-toggle text-white p-0 hover-link" id="navbarDrospdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user mr-2"></i>
+                    <span class="d-none d-md-inline-block font-weight-bold">{{firebaseUser?
+                        firebaseUser.displayName:"Tài khoản"}}</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a ng-hide="firebaseUser" class="dropdown-item font-weight-bold" href="#!/register">
+                        <i class="fas fa-user-edit"></i>
+                        Đăng ký
+                    </a>
+                    <a ng-hide="firebaseUser" class="dropdown-item font-weight-bold" href="#!/login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Đăng nhập
+                    </a>
+                    <a ng-hide="firebaseUser" class="dropdown-item font-weight-bold" href="#!/forgot-password">
+                        <i class="fas fa-user-lock"></i>
+                        Quên mật khẩu
+                    </a>
+                    <a ng-show="firebaseUser" class="dropdown-item font-weight-bold" href="#!/account/info">
+                        <i class="fas fa-address-card"></i>
+                        Thông tin cá nhân
+                    </a>
+                    <a ng-show="firebaseUser" class="dropdown-item font-weight-bold" href="#!/account/change-password">
+                        <i class="fas fa-key"></i>
+                        Đổi mật khẩu
+                    </a>
+                    <a ng-show="firebaseUser" class="dropdown-item font-weight-bold" href="#!/test/list">
+                        <i class="fas fa-align-left"></i>
+                        Danh sách kết quả
+                    </a>
+                    <button ng-show="firebaseUser" class="dropdown-item font-weight-bold"
+                        ng-click="signout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main style="min-height: 500px;" class="">
+        <div class="view-container" class="">
+            <div class="view-animation" ng-view>
+            </div>
+        </div>
+
+    </main>
+    <!--Main layout-->
+</body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- JQuery -->
+<script type="text/javascript" src="script/jquery-3.4.1.min.js"></script>
+<!-- Popper -->
+<script type="text/javascript" src="script/popper.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="script/b4/bootstrap.min.js"></script>
+<!-- MDB JavaScript -->
+<script type="text/javascript" src="script/mdb/mdb.min.js"></script>
+<script type="text/javascript" src="script/mdb/mdb-setup.js"></script>
+<!-- Firebase -->
+<script type="text/javascript" src="script/firebase/config.js"></script>
+<!-- AngularJS App -->
+<script type="text/javascript" src="script/angularjs-app.js"></script>
+
+<script type="module">
+    $(document).ready(function () {
+        $('.mdb-select').materialSelect();
+    });
+</script>
+
+
+<!-- Custom scripts -->
+<script type="text/javascript">
+    var app = angular.module("app", ["ngRoute", 'ngAnimate', 'firebase']);
+
+    // config
+    app.config(config);
+    // controller
+    app.controller("ctrl", ["$scope", "$firebaseAuth", "$location", "$route", "$firebaseObject", "$firebaseArray", ctrl]);
+    app.controller("ctrlTestInfo", ["$scope", "$routeParams", "$firebaseObject", ctrlTestInfo]);
+    app.controller("ctrlTest", ["$scope", "$routeParams", "$timeout", "$location", "$firebaseArray", "$firebaseObject", ctrlTest]);
+    app.controller("ctrlTestResult", ["$scope", "$routeParams", "$timeout", "$firebaseArray", "$firebaseObject", ctrlTestResult]);
+    // service
+    app.factory("Auth", ["$firebaseAuth", authFirebase]);
+
+
+
+</script>
+
+</html>

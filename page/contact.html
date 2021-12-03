@@ -1,0 +1,132 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-home.gif");
+    }
+
+    .map-container {
+        height: 280px;
+        position: relative;
+    }
+
+    .map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh !important;
+            padding-top: 8vh !important;
+        }
+    }
+</style>
+<div class="container py-5 z-depth-1 view-panel rounded shadown"">
+
+
+    <!--Section: Content-->
+    <section class=" px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="col-lg-6 text-center">
+            <h3 class="font-weight-bold text-white">Liện Lạc Với Chúng Tôi</h3>
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+    <!--Grid row-->
+    <div class="row text-center">
+
+        <!--Grid column-->
+        <div class="col-lg-4 mb-4 mb-md-0">
+
+            <i class="fas fa-envelope fa-lg blue-text"></i>
+
+            <p class="font-weight-bold my-1 white-text">E-mail</p>
+
+            <p class="text-muted white-text">info@email.com</p>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 mb-4 mb-md-0">
+
+            <i class="fas fa-phone fa-lg orange-text"></i>
+
+            <p class="font-weight-bold my-1 white-text">Điện thoại</p>
+
+            <p class="text-muted white-text">+ 01 234 567 89</p>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 mb-1 mb-md-0">
+
+            <i class="fas fa-map-marker-alt fa-lg green-text"></i>
+
+            <p class="font-weight-bold my-1 white-text">Địa chỉ</p>
+
+            <p class="text-muted white-text">Thành phố Hồ Chí Minh, Việt Nam</p>
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+    <!--Grid row-->
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-5 col-md-12 mb-3 mb-md-0 order-lg-last">
+
+            <!--Google map-->
+            <div id="map-container-google-1" class="z-depth-1 map-container mb-4"
+                style="min-height:250px; height: 100%;">
+                <iframe
+                    src="https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1745.4741468722798!2d106.6288829626192!3d10.852814157529485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529b6a2b351a5%3A0x11690ada8c36f9bc!2sFPT%20Polytechnic!5e0!3m2!1sen!2s!4v1636712590569!5m2!1sen!2s"
+                    frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+            <!--Google Maps-->
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-7 col-md-12 mt-4 mb-md-0">
+
+
+
+            <!-- Email -->
+            <input type="email" id="" class="form-control mb-4" placeholder="E-mail của bạn">
+
+            <!-- Subject -->
+            <input type="text" id="" class="form-control mb-4" placeholder="Nội dung">
+
+            <!--Content-->
+            <textarea id="" class="form-control mb-4" rows="3" placeholder="Chúng tôi có thể giúp gì?"></textarea>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-info btn-block font-weight-bold">GỬI</button>
+
+        </div>
+        <!--Grid column-->
+
+
+
+    </div>
+    <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>

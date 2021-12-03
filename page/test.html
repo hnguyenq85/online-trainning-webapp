@@ -1,0 +1,105 @@
+<style>
+    body {
+        background-image: url("../img/bg/bg-test.gif");
+    }
+
+    .navbtn-left {
+        float: left;
+    }
+
+    section {
+        position: relative;
+    }
+
+    .navbtn {
+        position: relative;
+        height: 0px;
+        top: 23px;
+    }
+
+    .questionCard {
+        font-size: 21px;
+        min-height: 250px;
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .navbtn {
+            top: -75px;
+        }
+    }
+
+    @media only screen and (max-width: 570px) {
+        .view-panel {
+            min-height: 100vh !important;
+            padding-top: 50px !important;
+        }
+    }
+</style>
+<div class="container py-2 z-depth-1 view-panel rounded shadow" ng-init="loadTest()">
+    <section class="my-3 mx-md-5">
+        <div class="card card-cascade">
+            <div class="card-body card-body-cascade text-left ml-lg-5 questionCard"
+                ng-repeat="q in testQuestions| limitTo:1:QuestionPage">
+                <!-- Text -->
+                <b class="mb-3">{{QuestionPage+1}}. {{q.Text}}</b>
+                <div class="container mt-3">
+                    <div class="custom-control custom-radio ml-md-5" ng-repeat="a in q.Answers">
+                        <input ng-change="answer(testQuestions.indexOf(q),a.Id)"
+                            ng-model="answers[testQuestions.indexOf(q)]" ng-value="{{a.Id}}" type="radio"
+                            class="custom-control-input" id="{{a.Id}}" name="{{q.Id}}">
+                        <label class="custom-control-label" for="{{a.Id}}">{{a.Text}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="navbtn">
+                <a class="btn-floating float-left btn-sm btn-primary navbtn" ng-click="prevQ()"><i
+                        class="fas fa-caret-left"></i></a>
+                <a class="btn-floating float-right btn-sm btn-primary navbtn" ng-click="nextQ()"><i
+                        class="fas fa-caret-right"></i></a>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="view view-cascade gradient-card-header primary-color-dark">
+                        <span ng-repeat="i in [].constructor(length) track by $index">
+                            <button type="button" class="btn waves-effect p-2 font-weight-bold" style="width: 40px"
+                                ng-class="{1: 'btn-outline-primary', 2: 'btn-primary', 3: 'btn-white'}
+                                [QuestionPage=={{$index}}?3:(answers[{{$index}}]==undefined?1:2)]"
+                                ng-click="jumpQ($index)">
+                                {{$index+1}}
+                            </button>
+                            <div ng-if="($index+1)%5==0" class="m-0 p-0" style="height: 0px;" id="brnodisplay"><br>
+                            </div>
+                        </span>
+
+                    </div>
+
+
+                </div>
+                <div class="col-xl-2 order-xl-first">
+                    <div class="view view-cascade gradient-card-header red accent-4 h-100">
+
+                        <h4 class="card-header-title" style="size: 15rem;">
+                            {{("00"+result.m).slice(-2)}}:{{("00"+result.s).slice(-2)}}</h4>
+                    </div>
+
+                </div>
+                <div class="col-xl-2">
+                    <button type="button" class="btn btn-default btn-lg btn-block font-weight-bold h-100 rounded" ng-click="finishTest()">
+                        Hoàn thành bài thi
+                    </button>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+        <!-- Card -->
+    </section>
+</div>
