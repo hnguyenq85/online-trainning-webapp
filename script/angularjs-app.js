@@ -1,12 +1,12 @@
 var config = function ($routeProvider) {
     $routeProvider
-        .when("/contact", { templateUrl: "../page/contact.html" })
-        .when("/faq", { templateUrl: "../page/faq.html" })
-        .when("/contact", { templateUrl: "../page/contact.html" })
-        .when("/feedback", { templateUrl: "../page/feedback.html" })
-        .when("/about", { templateUrl: "../page/about.html" })
-        .when("/register", { templateUrl: "../page/register.html" })
-        .when("/login", { templateUrl: "../page/login.html" })
+        .when("/contact", { templateUrl: "/online-trainning-webapp/page/contact.html" })
+        .when("/faq", { templateUrl: "/online-trainning-webapp/page/faq.html" })
+        .when("/contact", { templateUrl: "/online-trainning-webapp/page/contact.html" })
+        .when("/feedback", { templateUrl: "/online-trainning-webapp/page/feedback.html" })
+        .when("/about", { templateUrl: "/online-trainning-webapp/page/about.html" })
+        .when("/register", { templateUrl: "/online-trainning-webapp/page/register.html" })
+        .when("/login", { templateUrl: "/online-trainning-webapp/page/login.html" })
         .when("/forgot-password", { templateUrl: "../page/forgot-password.html" })
         .when("/account/info", {
             templateUrl: "../page/account-info.html",
@@ -16,9 +16,9 @@ var config = function ($routeProvider) {
                 }]
             }
         })
-        .when("/account/change-password", { templateUrl: "../page/password-change.html" })
+        .when("/account/change-password", { templateUrl: "/online-trainning-webapp/page/password-change.html" })
         .when("/test/info", {
-            templateUrl: "../page/test-info.html",
+            templateUrl: "/online-trainning-webapp/page/test-info.html",
             controller: "ctrlTestInfo",
             resolve: {
                 "currentAuth": ["Auth", function (Auth) {
@@ -27,7 +27,7 @@ var config = function ($routeProvider) {
             }
         })
         .when("/test/take", {
-            templateUrl: "../page/test.html",
+            templateUrl: "/online-trainning-webapp/page/test.html",
             controller: "ctrlTest",
             resolve: {
                 "currentAuth": ["Auth", function (Auth) {
@@ -36,7 +36,7 @@ var config = function ($routeProvider) {
             }
         })
         .when("/test/result", { 
-            templateUrl: "../page/test-result.html", 
+            templateUrl: "/online-trainning-webapp/page/test-result.html", 
             controller: "ctrlTestResult",
             resolve: {
                 "currentAuth": ["Auth", function (Auth) {
@@ -45,14 +45,14 @@ var config = function ($routeProvider) {
             } 
         })
         .when("/test/list", { 
-            templateUrl: "../page/test-list.html",
+            templateUrl: "/online-trainning-webapp/page/test-list.html",
             resolve: {
                 "currentAuth": ["Auth", function (Auth) {
                     return Auth.$requireSignIn();
                 }]
             } 
         })
-        .otherwise({ templateUrl: "../page/home.html" })
+        .otherwise({ templateUrl: "/online-trainning-webapp/page/home.html" })
 }
 
 firebase.initializeApp(FirebaseConfig);
