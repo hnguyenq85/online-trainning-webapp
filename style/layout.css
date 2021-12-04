@@ -24,7 +24,7 @@ body a {
 
 .sidenav {
   background-image: linear-gradient(rgb(0, 0, 0) 5%, transparent),
-    url("/img/bg/bg-sidenav.webp");
+    url("/online-trainning-webapp/img/bg/bg-sidenav.webp");
 }
 
 .navbar {

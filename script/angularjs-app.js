@@ -7,7 +7,7 @@ var config = function ($routeProvider) {
         .when("/about", { templateUrl: "/online-trainning-webapp/page/about.html" })
         .when("/register", { templateUrl: "/online-trainning-webapp/page/register.html" })
         .when("/login", { templateUrl: "/online-trainning-webapp/page/login.html" })
-        .when("/forgot-password", { templateUrl: "../page/forgot-password.html" })
+        .when("/forgot-password", { templateUrl: "/online-trainning-webapp/page/forgot-password.html" })
         .when("/account/info", {
             templateUrl: "/online-trainning-webapp/page/account-info.html",
             resolve: {
