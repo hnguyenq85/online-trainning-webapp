@@ -9,7 +9,7 @@ var config = function ($routeProvider) {
         .when("/login", { templateUrl: "/online-trainning-webapp/page/login.html" })
         .when("/forgot-password", { templateUrl: "../page/forgot-password.html" })
         .when("/account/info", {
-            templateUrl: "../page/account-info.html",
+            templateUrl: "/online-trainning-webapp/page/account-info.html",
             resolve: {
                 "currentAuth": ["Auth", function (Auth) {
                     return Auth.$requireSignIn();
