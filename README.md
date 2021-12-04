@@ -1,2 +1,2 @@
-# online-trainning-webapp
-Quiz taking website using angularjs and firebase
+# online-trainning-webapp deploy branch
+Deploy webapp using github page
